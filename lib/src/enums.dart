@@ -1,6 +1,9 @@
 enum PosAlign { left, center, right }
+
 enum PosCutMode { full, partial }
+
 enum PosFontType { fontA, fontB }
+
 enum PosDrawer { pin2, pin5 }
 
 /// Choose image printing function
@@ -25,21 +28,24 @@ class PosTextSize {
 }
 
 class PaperSize {
+  const PaperSize(this.value);
+
   const PaperSize._internal(this.value);
+
   final int value;
+
   static const mm58 = PaperSize._internal(1);
   static const mm72 = PaperSize._internal(2);
   static const mm80 = PaperSize._internal(3);
 
   int get width {
-    if (value == PaperSize.mm58.value) {
-      return 384;
-    } else if (value == PaperSize.mm72.value) {
-      return 512;
-    } else {
-      return 576;
-    }
-    // value == PaperSize.mm58.value ? 384 : 558;
+    final Map<PaperSize, int> sizes = {
+      PaperSize.mm58: 384,
+      PaperSize.mm72: 512,
+      PaperSize.mm80: 576,
+    };
+
+    return sizes[value] ?? value;
   }
 }
 
