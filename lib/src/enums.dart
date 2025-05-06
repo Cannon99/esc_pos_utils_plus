@@ -45,7 +45,7 @@ class PaperSize {
       PaperSize.mm80: 576,
     };
 
-    return sizes[value] ?? value;
+    return sizes[this] ?? value;
   }
 }
 
